@@ -1,44 +1,45 @@
 package com.agenor.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="tb_Funcionario")
-public class Funcionario implements Serializable {
-	// Serializable: transforma objeto em cadeia de bytes, para trafegar na rede, gravar em arquivo
-	
+@Table(name="tb_cliente")
+public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//opção de autoincremento
 	private Long id;
 	private String nome;
-	private String sobrenome;
-	private String cargo;
+	private String endereco;
 	private String telefone;
-	private String senha;
+	private String email;
 	
-	public Funcionario() {
-		
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	private List<Pedido> pedidos = new ArrayList();
+	
+	public Cliente() {
 	}
 
-	public Funcionario(Long id, String nome, String sobrenome, String cargo, String telefone, String senha) {
+	public Cliente(Long id, String nome, String endereco, String telefone, String email) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.sobrenome = sobrenome;
-		this.cargo = cargo;
+		this.endereco = endereco;
 		this.telefone = telefone;
-		this.senha = senha;
+		this.email = email;
 	}
 
 	public Long getId() {
@@ -57,20 +58,12 @@ public class Funcionario implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getSobrenome() {
-		return sobrenome;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getTelefone() {
@@ -81,12 +74,16 @@ public class Funcionario implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
 	@Override
@@ -105,7 +102,7 @@ public class Funcionario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcionario other = (Funcionario) obj;
+		Cliente other = (Cliente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -113,8 +110,6 @@ public class Funcionario implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
 
+		
 }

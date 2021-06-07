@@ -6,6 +6,4 @@ import com.agenor.course.entities.Funcionario;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 	
-	
-
 }
