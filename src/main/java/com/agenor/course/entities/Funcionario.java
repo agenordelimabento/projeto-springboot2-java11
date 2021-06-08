@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="tb_Funcionario")
+@Table(name="tb_funcionario")
 public class Funcionario implements Serializable {
 	// Serializable: transforma objeto em cadeia de bytes, para trafegar na rede, gravar em arquivo
 	

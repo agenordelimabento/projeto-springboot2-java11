@@ -24,8 +24,9 @@ public class Pedido implements Serializable {
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
+	//Coloca no formato de horário
 	
-		@ManyToOne
+	@ManyToOne
 	@JoinColumn
 	private Cliente client;
 	

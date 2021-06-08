@@ -6,23 +6,27 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agenor.course.entities.Pedido;
-import com.agenor.course.repositories.PedidoRepository;
+import com.agenor.course.entities.Cliente;
+import com.agenor.course.repositories.ClienteRepository;
 
 @Service
-public class ClientesService {
+public class ClienteService {
 
 	@Autowired
-	private PedidoRepository repository;
+	private ClienteRepository repository;
 	
-	public List<Pedido> findAll(){
+	public List<Cliente> findAll(){
 		return repository.findAll();
 		//Operação na camada de serviço que repassa a chamada para repository.findAll
 	}
 	
-	public Pedido findById(Long id) {
-		Optional<Pedido> obj = repository.findById(id);
+	public Cliente findById(Long id) {
+		Optional<Cliente> obj = repository.findById(id);
 		return obj.get();
 		// Retornar objeto Pedido que estiver dentro do Optional
+	}
+	
+	public Cliente insert(Cliente obj) {
+		return repository.save(obj);
 	}
 }
