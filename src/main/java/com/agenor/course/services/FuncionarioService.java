@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.agenor.course.entities.Cliente;
 import com.agenor.course.entities.Funcionario;
 import com.agenor.course.repositories.FuncionarioRepository;
 
@@ -34,4 +35,18 @@ public class FuncionarioService {
 		repository.deleteById(id);
 	}
 	
+	public Funcionario update(Long id, Funcionario obj) {
+		Funcionario entity = repository.getOne(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+		
+	}
+
+	private void updateData(Funcionario entity, Funcionario obj) {
+		entity.setNome(obj.getNome());
+		entity.setSobrenome(obj.getSobrenome());
+		entity.setCargo(obj.getCargo());
+		entity.setTelefone(obj.getTelefone());
+		
+	}
 }
