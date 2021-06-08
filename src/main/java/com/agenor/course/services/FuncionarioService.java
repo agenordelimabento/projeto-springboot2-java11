@@ -25,4 +25,13 @@ public class FuncionarioService {
 		return obj.get();
 		// Retornar objeto Funcionario que estiver dentro do Optional
 	}
+	
+	public Funcionario insert(Funcionario obj) {
+		return repository.save(obj);
+	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+	
 }
